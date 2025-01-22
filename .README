@@ -1,0 +1,58 @@
+
+# DDD architecture - tree structure
+src/
+├── config/              # Configuration files (e.g., environment, database, etc.)
+│   └── database.js      # Database connection logic (your MongoDB connection)
+│   └── dotenv.config.js # dotenv configuration for environment variables
+├── domain/              # Core business logic (Entities, Value Objects, Aggregates)
+│   ├── user/
+│   │   ├── entities/
+│   │   │   └── user.entity.js   # Defines User entity logic
+│   │   ├── value-objects/
+│   │   │   └── email.vo.js      # Value object for email
+│   │   │   └── phone.vo.js      # Value object for phone
+│   │   ├── aggregates/
+│   │   │   └── user.aggregate.js # Aggregate root for User
+│   │   └── services/
+│   │       └── user.service.js  # Business logic for user
+├── application/         # Application layer (use cases, DTOs)
+│   ├── user/
+│   │   ├── use-cases/
+│   │   │   └── authenticate-user.usecase.js
+│   │   │   └── verify-otp.usecase.js
+│   │   │   └── admin-login.usecase.js
+│   │   └── dtos/
+│   │       └── user.dto.js      # Data transfer objects for User
+├── infrastructure/      # Frameworks, tools, and implementation details
+│   ├── models/
+│   │   └── user.model.js        # Mongoose schema for User
+│   ├── repositories/
+│   │   └── user.repository.js   # Repository pattern for User
+│   ├── middlewares/
+│   │   └── role.middleware.js   # Role-based middleware
+│   ├── security/
+│   │   └── jwt.js               # JWT handling logic
+│   ├── external-services/
+│   │   └── otp.service.js       # OTP generation/verification logic
+│   └── logger/
+│       └── logger.js            # Logger setup (e.g., Winston)
+├── interfaces/          # API controllers, routes, and external-facing code
+│   ├── controllers/
+│   │   └── user.controller.js   # API routes and controllers for User
+│   ├── routes/
+│   │   └── user.routes.js       # Express routes for User module
+│   └── middlewares/
+│       └── error-handler.js     # Global error handling middleware
+├── shared/              # Shared code across modules
+│   ├── utils/
+│   │   └── validator.js         # General validators
+│   ├── constants/
+│   │   └── roles.js             # Define role constants
+│   │   └── messages.js          # Define reusable messages
+│   └── errors/
+│       └── custom-error.js      # Custom error handling class
+├── tests/               # Test cases
+│   ├── unit/            # Unit tests
+│   ├── integration/     # Integration tests
+│   └── e2e/             # End-to-end tests
+└── server.js            # Entry point
